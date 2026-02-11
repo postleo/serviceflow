@@ -1,5 +1,5 @@
 
-# ServiceFlow: Use Cases & Solution Value Analysis
+# ServiceFlow: Use Cases
 
 This document outlines the strategic value of ServiceFlow for specific user groups in the hospitality industry. It contrasts traditional training methods with the AI-driven ServiceFlow approach to highlight efficiency, consistency, and accessibility.
 
