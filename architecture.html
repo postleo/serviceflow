@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ServiceFlow Architecture</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: {
+                        oxford: { 900: '#0f172a', 800: '#1e293b', 100: '#f1f5f9' },
+                        primary: { 500: '#f97316', 600: '#ea580c' }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-oxford-900 text-white min-h-screen p-8">
+
+    <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-orange-300">ServiceFlow Architecture</h1>
+            <p class="text-slate-400">Agentic Orchestration powered by Google GenAI SDK</p>
+        </div>
+
+        <!-- Diagram Container -->
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-8 shadow-2xl backdrop-blur-sm mb-12">
+            <div class="mermaid flex justify-center">
+                %%{init: {'theme': 'dark', 'themeVariables': { 'primaryColor': '#f97316', 'edgeLabelBackground':'#1e293b', 'tertiaryColor': '#1e293b'}}}%%
+                graph TD
+                    User((User Input)) -->|Voice/Text/Image| Frontend[React Frontend]
+                    Frontend -->|Google GenAI SDK| Orchestrator{{"Gemini 3 Pro<br/>(The Orchestrator)"}}
+                    
+                    subgraph "Agent Swarm"
+                        Orchestrator -->|Analyze Structure| Analyst["Gemini 3 Flash<br/>(Structural Analyst)"]
+                        Orchestrator -->|Generate Visuals| Visuals["Gemini 2.5 Flash Image<br/>(The Photographer)"]
+                        Orchestrator -->|Write Code| Coder["Gemini 3 Flash<br/>(Visual Coder)"]
+                        Orchestrator -->|Synthesize Speech| Voice["Gemini 2.5 Native Audio<br/>(The Voice Actor)"]
+                    end
+
+                    Analyst -->|JSON Steps| Asset[Training Asset]
+                    Visuals -->|PNG Images| Asset
+                    Coder -->|Mermaid/HTML| Asset
+                    Voice -->|WAV Audio| Asset
+
+                    Asset -->|Rehydrate| UI[ServiceFlow UI]
+                    
+                    style Orchestrator fill:#ea580c,stroke:#fff,stroke-width:2px,color:#fff
+                    style User fill:#fff,stroke:#333,stroke-width:2px,color:#333
+                    style Frontend fill:#334155,stroke:#94a3b8,color:#fff
+                    style Asset fill:#10b981,stroke:#fff,color:#fff
+            </div>
+        </div>
+
+        <!-- Explanations -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <!-- Card 1 -->
+            <div class="bg-oxford-800 p-6 rounded-xl border border-white/5 hover:border-primary-500/50 transition-colors">
+                <div class="w-10 h-10 bg-primary-500/20 text-primary-500 rounded-lg flex items-center justify-center mb-4 font-bold">1</div>
+                <h3 class="font-bold text-lg mb-2">The Orchestrator</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                    Powered by <strong>Gemini 3 Pro</strong>. Acts as the project manager. It analyzes raw user input, determines the intent (e.g., "Create a script"), and delegates tasks to sub-agents.
+                </p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-oxford-800 p-6 rounded-xl border border-white/5 hover:border-primary-500/50 transition-colors">
+                <div class="w-10 h-10 bg-blue-500/20 text-blue-500 rounded-lg flex items-center justify-center mb-4 font-bold">2</div>
+                <h3 class="font-bold text-lg mb-2">Visuals as Code</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                    Powered by <strong>Gemini 3 Flash</strong>. Instead of generating pixelated text in images, this agent writes <strong>Mermaid.js</strong> and HTML code to render crisp, editable diagrams.
+                </p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-oxford-800 p-6 rounded-xl border border-white/5 hover:border-primary-500/50 transition-colors">
+                <div class="w-10 h-10 bg-purple-500/20 text-purple-500 rounded-lg flex items-center justify-center mb-4 font-bold">3</div>
+                <h3 class="font-bold text-lg mb-2">Native Audio</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                    Powered by <strong>Gemini 2.5 Native Audio</strong>. Transforms text scripts into human-quality speech with specific tonality (Formal vs. Casual) for auditory learning.
+                </p>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="bg-oxford-800 p-6 rounded-xl border border-white/5 hover:border-primary-500/50 transition-colors">
+                <div class="w-10 h-10 bg-green-500/20 text-green-500 rounded-lg flex items-center justify-center mb-4 font-bold">4</div>
+                <h3 class="font-bold text-lg mb-2">Generative Imagery</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                    Powered by <strong>Gemini 2.5 Flash Image</strong> (Nano Banana). Creates consistent, vector-style illustrations to visualize step-by-step procedures.
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Mermaid Import -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "name": "ServiceFlow",
+  "description": "AI-powered workflow automation for the service industry. Generate training manuals, scripts, and diagrams from simple inputs.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
